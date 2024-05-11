@@ -1,6 +1,6 @@
-NAME = replace
+NAME = main
 
-SRC = main.cpp
+SRC = main.cpp Zombie.cpp newZombie.cpp 
 
 OBJ = $(SRC:.cpp=.o)
 
