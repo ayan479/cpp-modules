@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/12 16:10:47 by mayan             #+#    #+#             */
-/*   Updated: 2024/05/12 16:17:14 by mayan            ###   ########.fr       */
+/*   Created: 2024/05/12 16:25:54 by mayan             #+#    #+#             */
+/*   Updated: 2024/05/12 16:26:15 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie *newZombie(std::string name)
+Zombie* zombieHorde(int N, std::string name)
 {
-	Zombie *zombie = new Zombie(name);
-	return (zombie);
+	Zombie *zombies = new Zombie[N];
+	for (int i = 0; i < N; i++)
+		zombies[i].setName(name);
+	return zombies;
 }
-
-//we use new to allocate memory for a new Zombie object and return a pointer to it
-//because you want to use it outside of the function scope.
-// If we used a stack object, it would be destroyed when the function ends.
