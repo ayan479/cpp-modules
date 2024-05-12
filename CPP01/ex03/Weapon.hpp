@@ -6,7 +6,7 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:07:06 by mayan             #+#    #+#             */
-/*   Updated: 2024/05/12 18:16:18 by mayan            ###   ########.fr       */
+/*   Updated: 2024/05/12 18:23:29 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <iostream>
 
-class WEAPON
+class Weapon
 {
 	private:
 		std::string _type;
