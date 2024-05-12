@@ -14,11 +14,7 @@
 
 int main()
 {
-		Zombie *zombie = newZombie("Foo");
-		zombie->announce();
-		randomChump("Bar");
-		delete zombie;
-		return 0;
+	Zombie *zombies = zombieHorde(5, "Zombie");
+	delete [] zombies;
+	return 0;
 }
-
-// we use new to allocate memory for a new Zombie object and return a pointer to it
