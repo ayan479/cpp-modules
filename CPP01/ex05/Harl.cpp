@@ -6,7 +6,7 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 20:43:12 by mayan             #+#    #+#             */
-/*   Updated: 2024/05/12 22:51:12 by mayan            ###   ########.fr       */
+/*   Updated: 2024/05/13 20:30:45 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,28 @@ void Harl::complain(std::string level)
 {
 	void (Harl::*levels[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	std::string levels_str[4] = {"debug", "info", "warning", "error"};
-	for (int i = 0; i < 4; i++)
+
+	size_t i = 0;
+
+	while(level.compare(levels_str[i]) && i < 4)
+		i++;
+	switch (i)
 	{
-		if (level == levels_str[i])
-		{
-			(this->*levels[i])();
-			return ;
-		}
+		case 0:
+			(this->*levels[0])();
+			break;
+		case 1:
+			(this->*levels[1])();
+			break;
+		case 2:
+			(this->*levels[2])();
+			break;
+		case 3:
+			(this->*levels[3])();
+			break;
+		default:
+			std::cout << "Invalid level" << std::endl;
+			break;
 	}
 }
 

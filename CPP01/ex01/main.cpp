@@ -14,7 +14,9 @@
 
 int main()
 {
-	Zombie *zombies = zombieHorde(5, "Zombie");
+	Zombie *zombies = zombieHorde(4, "Zombie");
+	for (int i = 0; i < 4; i++)
+		zombies[i].announce();
 	delete [] zombies;
 	return 0;
 }

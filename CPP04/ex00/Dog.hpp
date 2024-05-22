@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/12 16:25:54 by mayan             #+#    #+#             */
-/*   Updated: 2024/05/13 20:10:56 by mayan            ###   ########.fr       */
+/*   Created: 2024/05/22 22:25:14 by mayan             #+#    #+#             */
+/*   Updated: 2024/05/22 22:34:28 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Animal.hpp"
 
-Zombie* zombieHorde(int N, std::string name)
+#ifndef DOG_HPP
+# define DOG_HPP
+
+class Dog : public Animal
 {
-	Zombie	*zombies;
+	public:
+		Dog();
+		Dog(const Dog &object);
+		virtual ~Dog();
+		Dog &operator=(const Dog &rhs);
 
-	if (N < 0)
-		return (NULL);
-	zombies = new Zombie[N];
-	for (int i = 0; i < N; i++)
-	{
-		zombies[i].setName(name);
-	}
-	return (zombies);
-}
+		virtual void makeSound() const;
+};
+
+#endif

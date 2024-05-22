@@ -6,7 +6,7 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:27:07 by mayan             #+#    #+#             */
-/*   Updated: 2024/05/12 18:38:41 by mayan            ###   ########.fr       */
+/*   Updated: 2024/05/13 20:36:18 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,4 @@ void HumanB::attack()
 }
 
 //we use "This" to access the member class
+// its not necessary to use "this" mostly for readibility
