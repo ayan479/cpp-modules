@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 22:34:36 by mayan             #+#    #+#             */
-/*   Updated: 2024/05/24 22:54:44 by mayan            ###   ########.fr       */
+/*   Created: 2024/05/23 20:13:05 by mayan             #+#    #+#             */
+/*   Updated: 2024/05/24 22:51:34 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "WrongCat.hpp"
 
-Dog::Dog() : Animal("Dog")
+WrongCat::WrongCat() : WrongAnimal("WrongCat")
 {
-	std::cout << "Dog constructor called" << std::endl;
+	std::cout << "WrongCat constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &object) :Animal(object)
+WrongCat::WrongCat(const WrongCat &object) : WrongAnimal(object)
 {
-	std::cout << "Dog copy constructor called" << std::endl;
+	std::cout << "WrongCat copy constructor called" << std::endl;
 	*this = object;
 }
 
-Dog::~Dog()
+WrongCat::~WrongCat()
 {
-	std::cout << "Dog destructor called" << std::endl;
+	std::cout << "WrongCat destructor called" << std::endl;
 }
 
-Dog &Dog::operator=(const Dog &rhs)
+WrongCat &WrongCat::operator=(const WrongCat &rhs)
 {
 	if (this != &rhs)
 		this->_type = rhs._type;
 	return (*this);
 }
 
-void Dog::makeSound() const
+void WrongCat::makeSound() const
 {
-	std::cout << "Woof woof~🐶" << std::endl;
+	std::cout << "Mroeeeeoooooowng~🐱❌" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:28:43 by mayan             #+#    #+#             */
-/*   Updated: 2024/05/24 18:33:30 by mayan            ###   ########.fr       */
+/*   Updated: 2024/05/24 20:33:10 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,12 @@ The word means having many forms. It is the ability of a message(function / oper
 In C++, polymorphism is mainly divided into two types:
 
 Compile time polymorphism (early binding / static polymorphism) - static in nature
-Runtime polymorphism (late binding / dynamic polymorphism) */
+This includes function overloading and operator overloading.
+It is resolved at compile time.
+No virtual keyword is needed.
+
+Runtime polymorphism (late binding / dynamic polymorphism)
+This is achieved through inheritance and virtual functions.
+It is resolved at runtime.
+The virtual keyword is essential to enable this form of polymorphism.
+*/
