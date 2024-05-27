@@ -6,7 +6,7 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:58:18 by mayan             #+#    #+#             */
-/*   Updated: 2024/05/24 21:35:29 by mayan            ###   ########.fr       */
+/*   Updated: 2024/05/25 20:11:24 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ class Brain
 		Brain(const Brain &object);
 		virtual ~Brain();
 		Brain &operator=(const Brain &rhs);
-
-		std::string getIdea(int index) const;
-		void setIdea(int index, std::string idea);
 };
 
 #endif
