@@ -6,12 +6,23 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 14:23:35 by mayan             #+#    #+#             */
-/*   Updated: 2024/04/29 12:55:10 by mayan            ###   ########.fr       */
+/*   Updated: 2024/09/20 19:29:21 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
+/**
+ * @file megaphone.cpp
+ * @brief A simple program that converts input arguments to uppercase and prints them.
+ *
+ * This program takes command-line arguments and converts each character to uppercase.
+ * If no arguments are provided, it prints a default message.
+ *
+ * @param ac The number of command-line arguments.
+ * @param av The array of command-line arguments.
+ * @return 0 on successful execution.
+ */
 int main(int ac, char **av)
 {
 	if (ac == 1)

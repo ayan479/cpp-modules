@@ -6,7 +6,7 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:52:24 by mayan             #+#    #+#             */
-/*   Updated: 2024/06/27 21:08:51 by mayan            ###   ########.fr       */
+/*   Updated: 2024/10/23 22:24:59 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ class Bureaucrat
 				int                 _grade;
 
 		public:
-				Bureaucrat();
-				Bureaucrat(std::string const name, int grade);
+				Bureaucrat();//default constructor
+				Bureaucrat(const Bureaucrat&);//copy constructor
 				
+				~Bureaucrat();//destructor
+				Bureaucrat(std::string const name, int grade);//parametric constructor
+				Bureaucrat& operator=(const Bureaucrat&);
+
+}

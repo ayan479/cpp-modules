@@ -12,6 +12,23 @@
 
 #include "Zombie.hpp"
 
+/**
+ * @file main.cpp
+ * @brief Entry point for the Zombie application.
+ *
+ * This file contains the main function which demonstrates the creation and
+ * announcement of Zombie objects. It creates a Zombie object dynamically,
+ * makes it announce itself, and then deletes it. Additionally, it calls
+ * a function to create and announce a Zombie object on the stack.
+ *
+ * @details
+ * - `newZombie`: Creates a Zombie object dynamically.
+ * - `announce`: Makes the Zombie object announce itself.
+ * - `randomChump`: Creates a Zombie object on the stack and makes it announce itself.
+ * - `delete`: Frees the dynamically allocated Zombie object.
+ *
+ * @return int Returns 0 upon successful execution.
+ */
 int main()
 {
 		Zombie *zombie = newZombie("Foo");
