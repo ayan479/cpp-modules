@@ -10,8 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
+
 #include <iostream>
-#include <string> // std::string
+#include <string>
 #include <exception> // std::exception
 
 class Bureaucrat
@@ -23,9 +26,17 @@ class Bureaucrat
 		public:
 				Bureaucrat();//default constructor
 				Bureaucrat(const Bureaucrat&);//copy constructor
-				
 				~Bureaucrat();//destructor
 				Bureaucrat(std::string const name, int grade);//parametric constructor
-				Bureaucrat& operator=(const Bureaucrat&);
 
-}
+				Bureaucrat& operator=(const Bureaucrat&);//assignation operator
+
+				std::string const   getName() const;
+				int                 getGrade() const;
+
+				void                incrementGrade();
+				void                decrementGrade();
+				
+};
+
+#endif // BUREAUCRAT_HPP
