@@ -14,7 +14,7 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
-#include <string>
+#include <string> //strings
 #include <exception> // std::exception
 
 class Bureaucrat
@@ -33,10 +33,22 @@ class Bureaucrat
 
 				std::string const   getName() const;
 				int                 getGrade() const;
-
 				void                incrementGrade();
 				void                decrementGrade();
-				
+
+				class GradeTooHighException : public std::exception//we are inheriting from std::exception and creating our own exception class as a nested class of Bureaucrat 
+				{
+					public:
+						virtual const char* what() const throw();//overriding the what() function of std::exception, virtual is not part of the signature of the function, it is just a keyword to tell the compiler that this function can be overridden in a derived class
+				};
+
+				class GradeTooLowException : public std::exception
+				{
+					public:
+						virtual const char* what() const throw();
+				};
 };
 
-#endif // BUREAUCRAT_HPP
+std::ostream& operator<<(std::ostream& os, Bureaucrat const& ref);
+
+#endif

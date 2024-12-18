@@ -39,6 +39,14 @@ int main()
     try
     {
         Form f2("InvalidFormHigh", 0, 50); // Should throw GradeTooHighException
+        Bureaucrat b1("Joe", 2);
+        std::cout << b1 << std::endl;
+        
+        Form f1("Form1joe", 1, 1);
+        std::cout << f1 << std::endl;
+
+        b1.signForm(f1);
+        std::cout << f1 << std::endl;
     }
     catch (const std::exception &e)
     {
@@ -53,6 +61,8 @@ int main()
     {
         std::cerr << "Caught exception!: " << e.what() << std::endl;
     }
+
+    try
 
     std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
 

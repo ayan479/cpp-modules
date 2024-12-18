@@ -6,17 +6,20 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:52:31 by mayan             #+#    #+#             */
-/*   Updated: 2024/12/16 19:56:25 by mayan            ###   ########.fr       */
+/*   Updated: 2024/12/16 21:20:47 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150) {}
 
 Bureaucrat::Bureaucrat(const Bureaucrat& ref) : _name(ref._name), _grade(ref._grade) {}
+
+Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name)
 {
@@ -26,8 +29,6 @@ Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name)
         throw Bureaucrat::GradeTooLowException();
     _grade = grade;
 }
-
-Bureaucrat::~Bureaucrat() {}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& ref)
 {
@@ -61,7 +62,20 @@ void Bureaucrat::decrementGrade()
     if (_grade >= 150)
         throw Bureaucrat::GradeTooLowException();
     _grade++;
-} 
+}
+
+void Bureaucrat::signForm(Form &form)
+{
+    try
+    {
+        form.beSigned(*this);
+        std::cout << _name << GREEN << " signs " << RESET << form.getName() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << _name <<RED<<" could not sign "<<RESET<< form.getName() << " because " << e.what() << std::endl;
+    }
+}  
 
 // Exception messages
 const char* Bureaucrat::GradeTooHighException::what() const throw()
