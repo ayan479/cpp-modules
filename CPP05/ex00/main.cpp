@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+           */
+/*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:52:28 by mayan             #+#    #+#             */
-/*   Updated: 2024/10/22 20:04:20 by mayan            ###   ########.fr       */
+/*   Updated: 2025/01/02 18:10:37 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int main()
     //Testing invalid grade
     try
     {
+        std::cout << YELLOW << "Test 1 : Creating a bureaucrat with invalid grade" << RESET << std::endl;
+        std::cout << YELLOW << "Too high" << RESET << std::endl;
         Bureaucrat b("Invalid", 000); // Throws GradeTooHighException
     }
     catch (const std::exception& e)
@@ -25,6 +27,7 @@ int main()
     }
     try
     {
+        std::cout << YELLOW << "Too low" << RESET << std::endl;
         Bureaucrat b3("InvalidLow", 151); // Throws GradeTooLowException
     }
     catch (const std::exception& e)
@@ -36,6 +39,7 @@ int main()
     //increment
     try
     {
+        std::cout << YELLOW << "Test 2 : Incrementing a bureaucrat's grade" << RESET << std::endl;
         Bureaucrat b1("John", 2);
         std::cout << b1 << std::endl;
         
@@ -55,6 +59,7 @@ int main()
     //decrement
     try
     {
+        std::cout << YELLOW << "Test 3 : Decrementing a bureaucrat's grade" << RESET << std::endl;
         Bureaucrat b2("Jane", 149);
         std::cout << b2 << std::endl;
 

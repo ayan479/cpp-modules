@@ -6,7 +6,7 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 16:52:24 by mayan             #+#    #+#             */
-/*   Updated: 2024/10/23 22:24:59 by mayan            ###   ########.fr       */
+/*   Updated: 2025/01/02 15:43:32 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <iostream>
 #include <string> //strings
 #include <exception> // std::exception
+#define RED "\033[0;31m"
+#define GREEN "\033[0;32m"
+#define YELLOW "\033[0;33m"
+#define RESET "\033[0m"
 
 class Bureaucrat
 {

@@ -6,7 +6,7 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 20:25:43 by mayan             #+#    #+#             */
-/*   Updated: 2024/12/31 21:26:21 by mayan            ###   ########.fr       */
+/*   Updated: 2025/01/10 19:13:27 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,37 @@ Intern & Intern::operator=(const Intern & src)
     return *this;
 }
 
+AForm* Intern::createPresidentialPardonForm(std::string const& target)
+{
+    return new PresidentialPardonForm(target);
+}
+
+AForm* Intern::createRobotomyRequestForm(std::string const& target)
+{
+    return new RobotomyRequestForm(target);
+}
+
+AForm* Intern::createShrubberyCreationForm(std::string const& target)
+{
+    return new ShrubberyCreationForm(target);
+}
+
 AForm* Intern::makeForm(std::string const& formName, std::string const& target)
 {
     std::string formNames[3] = {"presidential pardon", "robotomy request", "shrubbery creation"};
-    AForm* forms[3] = {new PresidentialPardonForm(target), new RobotomyRequestForm(target), new ShrubberyCreationForm(target)};
-
+    
+    FormCreator creator[3] = {&Intern::createPresidentialPardonForm, &Intern::createRobotomyRequestForm, &Intern::createShrubberyCreationForm};
+    
     for (int i = 0; i < 3; i++)
     {
-        if (formName == formNames[i])
+        if (formNames[i] == formName)
         {
-            std::cout << "Intern creates " << formNames[i] << " form" << std::endl;
-            return forms[i];
-        }
-        else
-        {
-            delete forms[i];
+            std::cout << "Intern creates " << formName << " form." << std::endl;
+            return (this->*creator[i])(target);
         }
     }
-    std::cout << "Intern can't create " << formName << " form not found :(" << std::endl;
+    
+    std::cout << "Form " << RED << formName << RESET <<" not found." << std::endl;
     return NULL;
 }
 

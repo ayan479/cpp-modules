@@ -6,7 +6,7 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 20:14:43 by mayan             #+#    #+#             */
-/*   Updated: 2024/12/19 11:56:35 by mayan            ###   ########.fr       */
+/*   Updated: 2025/01/02 18:44:36 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class Form
         
         Form& operator=(const Form&);
         
-        std::string const getName() const;
+        std::string const getName() const;//accessors
         bool isSigned() const;
         int getGradeToSign() const;
         int getGradeToExec() const;
