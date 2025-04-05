@@ -1,11 +1,12 @@
-NAME = main
+NAME = array
 
-SRC = main.cpp Bureaucrat.cpp Form.cpp 
+SRC = main.cpp
+
 OBJ = $(SRC:.cpp=.o)
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I./
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 

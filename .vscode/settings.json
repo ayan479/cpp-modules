@@ -50,5 +50,8 @@
 		"numbers": "cpp",
 		"sstream": "cpp"
 	},
-	"C_Cpp.errorSquiggles": "disabled"
+	"C_Cpp.errorSquiggles": "disabled",
+	"oneDarkPro.vivid": true,
+	"oneDarkPro.bold": true,
+	"workbench.colorTheme": "Default Dark Modern"
 }

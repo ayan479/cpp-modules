@@ -6,7 +6,7 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 18:04:26 by mayan             #+#    #+#             */
-/*   Updated: 2025/01/02 18:04:35 by mayan            ###   ########.fr       */
+/*   Updated: 2025/01/10 22:09:30 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main()
         Bureaucrat b1("John", 2);
         std::cout << b1 << std::endl;
         
-        Form f1("Form1", 1, 1);
+        Form f1(NULL, 1, 1);
         std::cout << f1 << std::endl;
 
         b1.signForm(f1);
