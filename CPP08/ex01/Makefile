@@ -1,6 +1,6 @@
 NAME = span
 
-SRC = main.cpp
+SRC = main.cpp span.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
