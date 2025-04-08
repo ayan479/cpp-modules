@@ -48,7 +48,12 @@
 		"fstream": "cpp",
 		"iomanip": "cpp",
 		"numbers": "cpp",
-		"sstream": "cpp"
+		"sstream": "cpp",
+		"list": "cpp",
+		"ratio": "cpp",
+		"semaphore": "cpp",
+		"stop_token": "cpp",
+		"thread": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "disabled",
 	"oneDarkPro.vivid": true,
