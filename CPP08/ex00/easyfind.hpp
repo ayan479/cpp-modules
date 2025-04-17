@@ -6,7 +6,7 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 03:32:27 by mayan             #+#    #+#             */
-/*   Updated: 2025/04/06 01:23:48 by mayan            ###   ########.fr       */
+/*   Updated: 2025/04/17 15:52:22 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 // container: vector, list, array, etc.
 // value: int to find
-// iterator: iterator to the found value eg. vector<int>::iterator
 template <typename T>
 typename T::iterator easyfind(T& container, int value)
 {
@@ -28,3 +27,9 @@ typename T::iterator easyfind(T& container, int value)
     return it;
 }
 
+// Each container implements iterators that know how to navigate its specific structure:
+// Vector iterators: Jump directly (like pointer arithmetic)
+// List iterators: Follow link pointers
+// Map iterators: Traverse tree structure
+
+//standardised way of accessing containers data, allows for them to work with any algorithm 
