@@ -14,51 +14,37 @@
 #define PMERGEME_HPP
 
 #include <iostream>
-#include <string>
 #include <vector>
 #include <deque>
 #include <algorithm>
-#include <ctime>
 #include <sys/time.h>
-#include <sstream>
+#include <cstdlib>
 
 #define RED "\033[1;31m"
 #define GREEN "\033[1;32m"
-#define YELLOW "\033[1;33m"
-#define CYAN "\033[1;36m"
 #define RESET "\033[0m"
 
 class PmergeMe
 {
 	private:
-		std::vector<int>	_vectorData;
-		std::deque<int>		_dequeData;
-
-		// Vector implementation
-		void				mergeInsertVector(std::vector<int>& container);
-		void				vectorMergeSort(std::vector<int>& container, int left, int right);
-		void				vectorMerge(std::vector<int>& container, int left, int mid, int right);
-		void				vectorInsertionSort(std::vector<int>& container, int left, int right);
-
-		// Deque implementation
-		void				mergeInsertDeque(std::deque<int>& container);
-		void				dequeMergeSort(std::deque<int>& container, int left, int right);
-		void				dequeMerge(std::deque<int>& container, int left, int mid, int right);
-		void				dequeInsertionSort(std::deque<int>& container, int left, int right);
-
-		// Utility functions
-		bool				isValidNumber(const std::string& str) const;
-		double				getTimeDifference(struct timeval start, struct timeval end) const;
-		void				printContainer(const std::vector<int>& container, const std::string& label) const;
+		std::vector<int> _vector;
+		std::deque<int> _deque;
+		
+		// Ford-Johnson algorithm for vector
+		void fordJohnsonVector(std::vector<int>& container);
+		void insertionSortVector(std::vector<int>& container, int left, int right);
+		
+		// Ford-Johnson algorithm for deque  
+		void fordJohnsonDeque(std::deque<int>& container);
+		void insertionSortDeque(std::deque<int>& container, int left, int right);
 
 	public:
-		PmergeMe();
+		PmergeMe(int argc, char **argv);
 		PmergeMe(const PmergeMe& other);
 		~PmergeMe();
 		PmergeMe& operator=(const PmergeMe& rhs);
 
-		bool				parseInput(int argc, char **argv);
-		void				sortAndTime();
+		void sort();
 };
 
 #endif

@@ -14,15 +14,14 @@
 
 int main(int argc, char **argv)
 {
-	PmergeMe sorter;
-	
-	if (!sorter.parseInput(argc, argv))
-	{
-		std::cerr << RED << "Usage: ./PmergeMe [positive integers...]" << RESET << std::endl;
+	try {
+		PmergeMe sorter(argc, argv);
+		sorter.sort();
+	}
+	catch (std::exception& e) {
+		std::cerr << RED << "Error" << RESET << std::endl;
 		return 1;
 	}
-	
-	sorter.sortAndTime();
 	
 	return 0;
 }

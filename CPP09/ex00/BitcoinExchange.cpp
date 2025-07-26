@@ -6,7 +6,7 @@
 /*   By: mayan <mayan@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 00:00:00 by mayan             #+#    #+#             */
-/*   Updated: 2025/07/20 22:30:17 by mayan            ###   ########.fr       */
+/*   Updated: 2025/07/26 17:50:32 by mayan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,30 @@
 
 BitcoinExchange::BitcoinExchange()
 {
+	std::ifstream dbFile("data.csv");
+	if (!dbFile.is_open())
+		throw std::runtime_error("Error: could not open database file");
+	
+	std::string line;
+	std::getline(dbFile, line); // Skip header line
+	
+	while (std::getline(dbFile, line))
+	{
+		size_t pos = line.find(',');
+		if (pos == std::string::npos)
+			continue;
+		
+		std::string date = line.substr(0, pos);
+		std::string rateStr = line.substr(pos + 1);
+		
+		trimWhitespace(date);
+		trimWhitespace(rateStr);
+		std::stringstream rateStream(rateStr);
+		double rate;
+		if (rateStream >> rate)// extract from stream into rate
+			_exchangeRates[date] = rate;//assign to map
+	}
+	dbFile.close();
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) : _exchangeRates(other._exchangeRates)
@@ -39,20 +63,20 @@ bool BitcoinExchange::isValidDate(const std::string& date) const
 	int year, month, day;
 	std::stringstream ss(date);
 	char dash;
-	ss >> year >> dash >> month >> dash >> day; 
+	ss >> year >> dash >> month >> dash >> day; // >> is type aware, it knows wat goes where
 
-	if (ss.fail() || !ss.eof())
+	if (ss.fail() || !ss.eof())//non-numeric or xtra
 		return false;
 
-	if (month < 1 || month > 12 || day < 1 || day > 31)
+	if (month < 1 || month > 12 || day < 1 || day > 31)// within range
 		return false;
 
-	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) //april, june, september, november
 		return false;
 
 	if (month == 2)
 	{
-		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
+		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) 
 			return day <= 29; // Leap year
 		else
 			return day <= 28; // Non-leap year
@@ -71,37 +95,7 @@ void BitcoinExchange::trimWhitespace(std::string& str) const
 
 void BitcoinExchange::processExchange(const std::string& filename)
 {
-	// Load database first (only if not already loaded)
-	if (_exchangeRates.empty())
-	{
-		std::ifstream dbFile("data.csv");
-		if (!dbFile.is_open())
-		{
-			std::cerr << RED << "Error: could not open database file" << RESET << std::endl;
-			return;
-		}
-		std::string line;
-		std::getline(dbFile, line); // Skip header line
-		
-		while (std::getline(dbFile, line))
-		{
-			size_t pos = line.find(',');
-			if (pos == std::string::npos)
-				continue;
-			
-			std::string date = line.substr(0, pos);
-			std::string rateStr = line.substr(pos + 1);
-			
-			trimWhitespace(date);
-			trimWhitespace(rateStr);			std::stringstream rateStream(rateStr);
-			double rate;
-			if (rateStream >> rate)
-				_exchangeRates[date] = rate;
-		}
-		dbFile.close();
-	}
-	
-	// Process input file
+	//Process input file
 	std::ifstream inputFile(filename.c_str());
 	if (!inputFile.is_open())
 	{
@@ -152,14 +146,14 @@ void BitcoinExchange::processExchange(const std::string& filename)
 		}
 		
 		// Find exchange rate
-		std::map<std::string, double>::const_iterator it = _exchangeRates.upper_bound(date);
-		if (it == _exchangeRates.begin())
+		std::map<std::string, double>::const_iterator it = _exchangeRates.upper_bound(date);// find the first date that is greater than the given date
+		if (it == _exchangeRates.begin())//date is too early
 		{
 			std::cerr << RED << "Error: no exchange rate data available for " << date << RESET << std::endl;
 			continue;
 		}
-		--it;
-		double rate = it->second;
+		--it; // get rate from period that our date falls into
+		double rate = it->second; // Get the rate from the map (second cuz maps are pairs, first is key)
 		
 		std::cout << GREEN << date << " => " << value << " = " << std::fixed << std::setprecision(2) << (value * rate) << RESET << std::endl;
 	}

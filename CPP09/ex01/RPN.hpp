@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RPN_HPP
-#define RPN_HPP
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -27,18 +26,13 @@
 class RPN
 {
 	private:
-		std::stack<double> _stack;
-		bool	isOperator(const std::string& token) const;
-		bool	isNumber(const std::string& token) const;
-		double	performOperation(double a, double b, const std::string& op) const;
+		std::stack<int> _stack;
 
+		void performOperation(char op);
 	public:
 		RPN();
-		RPN(const RPN& other);
+		RPN(const RPN &other);
 		~RPN();
-		RPN& operator=(const RPN& rhs);
-
-		double	evaluate(const std::string& expression);
+		RPN &operator=(const RPN &other);
+		void calculate(const std::string &expression);
 };
-
-#endif

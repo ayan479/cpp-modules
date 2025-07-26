@@ -20,8 +20,16 @@ int main(int argc, char **argv)
 		return 1;
 	}
 	
-	BitcoinExchange exchange;
-	exchange.processExchange(argv[1]);
+	try
+	{
+		BitcoinExchange exchange;
+		exchange.processExchange(argv[1]);
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << RED << e.what() << RESET << std::endl;
+		return 1;
+	}
 	
 	return 0;
 }
