@@ -11,17 +11,19 @@
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include <sstream>
 
 PmergeMe::PmergeMe(int argc, char **argv) 
 {
     if (argc < 2)
         throw std::runtime_error("Error");
 
-    for (int i = 1; i < argc; i++) {
-        char *end;
-        long num = std::strtol(argv[i], &end, 10);
+    for (int i = 1; i < argc; i++)
+    {
+        std::stringstream ss(argv[i]);
+        long num;
         
-        if (*end != '\0' || num <= 0 || num > 2147483647)
+        if (!(ss >> num) || !ss.eof() || num <= 0 || num > 2147483647)
             throw std::runtime_error("Error");
         
         _vector.push_back(static_cast<int>(num));
@@ -42,37 +44,14 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& rhs)
     return *this;
 }
 
-bool PmergeMe::parseInput(int argc, char **argv)
+void PmergeMe::insertionSortVector(std::vector<int>& container, int left, int right) 
 {
-    if (argc < 2) 
-	{
-        std::cerr << RED << "Error" << RESET << std::endl;
-        return false;
-    }
-
-    for (int i = 1; i < argc; i++)
-	{
-        char *end;
-        long num = std::strtol(argv[i], &end, 10);
-        
-        if (*end != '\0' || num <= 0 || num > 2147483647) 
-		{
-            std::cerr << RED << "Error" << RESET << std::endl;
-            return false;
-        }
-        
-        _vector.push_back(static_cast<int>(num));
-        _deque.push_back(static_cast<int>(num));
-    }
-    
-    return true;
-}
-
-void PmergeMe::insertionSortVector(std::vector<int>& container, int left, int right) {
-    for (int i = left + 1; i <= right; i++) {
+    for (int i = left + 1; i <= right; i++) 
+    {
         int key = container[i];
         int j = i - 1;
-        while (j >= left && container[j] > key) {
+        while (j >= left && container[j] > key) 
+        {
             container[j + 1] = container[j];
             j--;
         }
@@ -80,11 +59,13 @@ void PmergeMe::insertionSortVector(std::vector<int>& container, int left, int ri
     }
 }
 
-void PmergeMe::fordJohnsonVector(std::vector<int>& container) {
+void PmergeMe::fordJohnsonVector(std::vector<int>& container) 
+{
     if (container.size() <= 1) return;
     
     // For small arrays, use insertion sort
-    if (container.size() <= 20) {
+    if (container.size() <= 20) 
+    {
         insertionSortVector(container, 0, container.size() - 1);
         return;
     }
@@ -94,7 +75,8 @@ void PmergeMe::fordJohnsonVector(std::vector<int>& container) {
     bool hasOdd = container.size() % 2 == 1;
     int oddElement = hasOdd ? container.back() : 0;
     
-    for (size_t i = 0; i < container.size() - (hasOdd ? 1 : 0); i += 2) {
+    for (size_t i = 0; i < container.size() - (hasOdd ? 1 : 0); i += 2) 
+    {
         int a = container[i];
         int b = container[i + 1];
         if (a > b) std::swap(a, b);
@@ -103,7 +85,8 @@ void PmergeMe::fordJohnsonVector(std::vector<int>& container) {
     
     // Step 2: Sort pairs by their larger element (recursive)
     std::vector<int> larger;
-    for (size_t i = 0; i < pairs.size(); i++) {
+    for (size_t i = 0; i < pairs.size(); i++) 
+    {
         larger.push_back(pairs[i].second);
     }
     fordJohnsonVector(larger);
@@ -112,11 +95,14 @@ void PmergeMe::fordJohnsonVector(std::vector<int>& container) {
     std::vector<int> mainChain;
     std::vector<int> pending;
     
-    for (size_t i = 0; i < larger.size(); i++) {
+    for (size_t i = 0; i < larger.size(); i++) 
+    {
         mainChain.push_back(larger[i]);
         // Find corresponding smaller element
-        for (size_t j = 0; j < pairs.size(); j++) {
-            if (pairs[j].second == larger[i]) {
+        for (size_t j = 0; j < pairs.size(); j++) 
+        {
+            if (pairs[j].second == larger[i]) 
+            {
                 pending.push_back(pairs[j].first);
                 break;
             }
@@ -124,13 +110,15 @@ void PmergeMe::fordJohnsonVector(std::vector<int>& container) {
     }
     
     // Step 4: Insert pending elements using binary insertion
-    for (size_t i = 0; i < pending.size(); i++) {
+    for (size_t i = 0; i < pending.size(); i++) 
+    {
         std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), pending[i]);
         mainChain.insert(pos, pending[i]);
     }
     
     // Step 5: Insert odd element if exists
-    if (hasOdd) {
+    if (hasOdd) 
+    {
         std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), oddElement);
         mainChain.insert(pos, oddElement);
     }
@@ -139,10 +127,12 @@ void PmergeMe::fordJohnsonVector(std::vector<int>& container) {
 }
 
 void PmergeMe::insertionSortDeque(std::deque<int>& container, int left, int right) {
-    for (int i = left + 1; i <= right; i++) {
+    for (int i = left + 1; i <= right; i++)
+    {
         int key = container[i];
         int j = i - 1;
-        while (j >= left && container[j] > key) {
+        while (j >= left && container[j] > key) 
+        {
             container[j + 1] = container[j];
             j--;
         }
@@ -150,11 +140,13 @@ void PmergeMe::insertionSortDeque(std::deque<int>& container, int left, int righ
     }
 }
 
-void PmergeMe::fordJohnsonDeque(std::deque<int>& container) {
+void PmergeMe::fordJohnsonDeque(std::deque<int>& container) 
+{
     if (container.size() <= 1) return;
     
     // For small arrays, use insertion sort
-    if (container.size() <= 20) {
+    if (container.size() <= 20) 
+    {
         insertionSortDeque(container, 0, container.size() - 1);
         return;
     }
@@ -164,7 +156,8 @@ void PmergeMe::fordJohnsonDeque(std::deque<int>& container) {
     bool hasOdd = container.size() % 2 == 1;
     int oddElement = hasOdd ? container.back() : 0;
     
-    for (size_t i = 0; i < container.size() - (hasOdd ? 1 : 0); i += 2) {
+    for (size_t i = 0; i < container.size() - (hasOdd ? 1 : 0); i += 2) 
+    {
         int a = container[i];
         int b = container[i + 1];
         if (a > b) std::swap(a, b);
@@ -173,7 +166,8 @@ void PmergeMe::fordJohnsonDeque(std::deque<int>& container) {
     
     // Step 2: Sort pairs by their larger element (recursive)
     std::deque<int> larger;
-    for (size_t i = 0; i < pairs.size(); i++) {
+    for (size_t i = 0; i < pairs.size(); i++) 
+    {
         larger.push_back(pairs[i].second);
     }
     fordJohnsonDeque(larger);
@@ -182,11 +176,14 @@ void PmergeMe::fordJohnsonDeque(std::deque<int>& container) {
     std::deque<int> mainChain;
     std::vector<int> pending;
     
-    for (size_t i = 0; i < larger.size(); i++) {
+    for (size_t i = 0; i < larger.size(); i++) 
+    {
         mainChain.push_back(larger[i]);
         // Find corresponding smaller element
-        for (size_t j = 0; j < pairs.size(); j++) {
-            if (pairs[j].second == larger[i]) {
+        for (size_t j = 0; j < pairs.size(); j++) 
+        {
+            if (pairs[j].second == larger[i]) 
+            {
                 pending.push_back(pairs[j].first);
                 break;
             }
@@ -194,13 +191,15 @@ void PmergeMe::fordJohnsonDeque(std::deque<int>& container) {
     }
     
     // Step 4: Insert pending elements using binary insertion
-    for (size_t i = 0; i < pending.size(); i++) {
+    for (size_t i = 0; i < pending.size(); i++) 
+    {
         std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), pending[i]);
         mainChain.insert(pos, pending[i]);
     }
     
     // Step 5: Insert odd element if exists
-    if (hasOdd) {
+    if (hasOdd) 
+    {
         std::deque<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), oddElement);
         mainChain.insert(pos, oddElement);
     }
@@ -208,10 +207,12 @@ void PmergeMe::fordJohnsonDeque(std::deque<int>& container) {
     container = mainChain;
 }
 
-void PmergeMe::sort() {
+void PmergeMe::sort() 
+{
     // Print before
     std::cout << "Before: ";
-    for (size_t i = 0; i < _vector.size(); i++) {
+    for (size_t i = 0; i < _vector.size(); i++) 
+    {
         std::cout << _vector[i];
         if (i < _vector.size() - 1) std::cout << " ";
     }
@@ -232,7 +233,8 @@ void PmergeMe::sort() {
     
     // Print after
     std::cout << "After: ";
-    for (size_t i = 0; i < _vector.size(); i++) {
+    for (size_t i = 0; i < _vector.size(); i++) 
+    {
         std::cout << _vector[i];
         if (i < _vector.size() - 1) std::cout << " ";
     }
