@@ -32,11 +32,9 @@ class PmergeMe
 		
 		// Ford-Johnson algo for vector
 		void fordJohnsonVector(std::vector<int>& container);
-		void insertionSortVector(std::vector<int>& container, int left, int right);
 		
 		// Ford-Johnson algo for deque  
 		void fordJohnsonDeque(std::deque<int>& container);
-		void insertionSortDeque(std::deque<int>& container, int left, int right);
 
 	public:
 		PmergeMe(int argc, char **argv);

@@ -44,31 +44,9 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& rhs)
     return *this;
 }
 
-void PmergeMe::insertionSortVector(std::vector<int>& container, int left, int right) 
-{
-    for (int i = left + 1; i <= right; i++) 
-    {
-        int key = container[i];
-        int j = i - 1;
-        while (j >= left && container[j] > key) 
-        {
-            container[j + 1] = container[j];
-            j--;
-        }
-        container[j + 1] = key;
-    }
-}
-
 void PmergeMe::fordJohnsonVector(std::vector<int>& container) 
 {
     if (container.size() <= 1) return;
-    
-    // For small arrays, use insertion sort
-    if (container.size() <= 20) 
-    {
-        insertionSortVector(container, 0, container.size() - 1);
-        return;
-    }
     
     // Step 1: Group elements into pairs and sort each pair
     std::vector<std::pair<int, int> > pairs;
@@ -126,30 +104,9 @@ void PmergeMe::fordJohnsonVector(std::vector<int>& container)
     container = mainChain;
 }
 
-void PmergeMe::insertionSortDeque(std::deque<int>& container, int left, int right) {
-    for (int i = left + 1; i <= right; i++)
-    {
-        int key = container[i];
-        int j = i - 1;
-        while (j >= left && container[j] > key) 
-        {
-            container[j + 1] = container[j];
-            j--;
-        }
-        container[j + 1] = key;
-    }
-}
-
 void PmergeMe::fordJohnsonDeque(std::deque<int>& container) 
 {
     if (container.size() <= 1) return;
-    
-    // For small arrays, use insertion sort
-    if (container.size() <= 20) 
-    {
-        insertionSortDeque(container, 0, container.size() - 1);
-        return;
-    }
     
     // Step 1: Group elements into pairs and sort each pair
     std::vector<std::pair<int, int> > pairs;
