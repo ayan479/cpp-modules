@@ -12,7 +12,8 @@
 
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(int argc, char **argv) {
+PmergeMe::PmergeMe(int argc, char **argv) 
+{
     if (argc < 2)
         throw std::runtime_error("Error");
 
