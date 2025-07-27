@@ -52,8 +52,8 @@ void PmergeMe::fordJohnsonVector(std::vector<int>& container)
     std::vector<std::pair<int, int> > pairs;
     bool hasOdd = container.size() % 2 == 1;
     int oddElement = hasOdd ? container.back() : 0;
-    
-    for (size_t i = 0; i < container.size() - (hasOdd ? 1 : 0); i += 2) 
+
+    for (size_t i = 0; i < container.size() - (hasOdd ? 1 : 0); i += 2) //stop loop one elm early if odd
     {
         int a = container[i];
         int b = container[i + 1];
@@ -111,7 +111,7 @@ void PmergeMe::fordJohnsonDeque(std::deque<int>& container)
     // Step 1: Group elements into pairs and sort each pair
     std::vector<std::pair<int, int> > pairs;
     bool hasOdd = container.size() % 2 == 1;
-    int oddElement = hasOdd ? container.back() : 0;
+    int oddElement = hasOdd ? container.back() : 0; //if odd, save last element
     
     for (size_t i = 0; i < container.size() - (hasOdd ? 1 : 0); i += 2) 
     {
